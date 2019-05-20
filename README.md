@@ -41,6 +41,11 @@ This is the structure of this boilerplate:
 ### Prerequisites
 What things you need to install the software and how to install them
 
+Start the server (until I work out how to do it properly)
+````
+npm run server
+````
+
 Start the development environment
 ````
 npm start
