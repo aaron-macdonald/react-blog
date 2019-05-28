@@ -3,7 +3,6 @@ import request from 'superagent'
 // To get around cors for now
 const localhost = 'http://localhost:5000' 
 
-//====================================================
 export function getPlayers () {
   return request.get(localhost + '/api/v1/players/players')
     .then(result => {
@@ -14,7 +13,7 @@ export function getPlayers () {
       throw Error('Cannot get players!')
     })
 }
-//====================================================
+
 export function addPlayer (player) {
   return request.post(localhost + '/api/v1/players/player/add')
   .send(player)
@@ -25,7 +24,7 @@ export function addPlayer (player) {
     throw Error('Cannot add a player!')
   })
 }
-//====================================================
+
 export function updatePlayer (player) {
   const{id} = player
   return request.put(localhost + `/api/v1/players/player/${id}/edit`)
@@ -37,7 +36,7 @@ export function updatePlayer (player) {
     throw Error('Cannot update player!')
   })
 }
-//====================================================
+
 export function getPlayerData(id) {
   return request.get(localhost + `/api/v1/players/players/player/${id}`)
   .send(id)
@@ -48,7 +47,7 @@ export function getPlayerData(id) {
     throw Error('Cannot get player data')
   })
 }
-//====================================================
+
 export function getGames() {
   return request.get(localhost + '/api/v1/games/games')
     .then(result => {
@@ -59,7 +58,7 @@ export function getGames() {
       throw Error('Cannot get games!')
     })
 }
-//====================================================
+
 export function getGameData(id) {
   return request.get(localhost + `/api/v1/games/games/game/${id}`)
     .send(id)
@@ -70,7 +69,7 @@ export function getGameData(id) {
       throw Error('Cannot get gamedata!')
     })
 }
-//====================================================
+
 export function getTableData(id) {
   return request.get(localhost + `/api/v1/table/table`)
     .then(result => {

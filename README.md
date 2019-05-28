@@ -11,32 +11,13 @@ git clone https://github.com/[your-org]/[your-app].git
 cd [your-app]
 npm i
 ````
+### Knex Migrations and seeds
+Apply migrations individually by removing all but one, migrating and then adding back the next to 'migrate latest'
 
-This is the structure of this boilerplate:
+knex migrate:latest
 
-```sh
-.
-├── dist
-│   └── index.js
-│   ├── main.js
-├── src
-│   ├── js
-│   │   └── components
-│   │       └── container
-│   │       │    └── FormContainer.jsx
-│   │       └── presentational
-│   │            └── input.jsx
-│   ├── index.html
-│   └── index.js
-├── .babelrc
-├── .gitignore
-├── LICENSE
-├── package-lock.json
-├── package.json
-├── README.md
-├── SETUP.md
-└── webpack.config.js
-```
+knex seed:run
+
 
 ### Prerequisites
 What things you need to install the software and how to install them

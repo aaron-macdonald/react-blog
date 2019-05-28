@@ -64,7 +64,7 @@ exports.seed = function(knex, Promise) {
         {id: 51, game_id: 7, player_id: 108, buyin: 20, rebuys: 0, addons: 0, position: 3, prizemoney: 60},
         {id: 52, game_id: 7, player_id: 103, buyin: 20, rebuys: 20, addons: 20, position: 1, prizemoney: 180},
         {id: 53, game_id: 7, player_id: 104, buyin: 20, rebuys: 20, addons: 0, position: 2, prizemoney: 120},
-        {id: 54, game_id: 7, player_id: 101, buyin: 20, rebuys: 0, addons: 0, position: 7, prizemoney: 0},
+        {id: 54, game_id: 7, player_id: 105, buyin: 20, rebuys: 0, addons: 0, position: 7, prizemoney: 0},
         {id: 55, game_id: 7, player_id: 106, buyin: 20, rebuys: 0, addons: 0, position: 4, prizemoney: 0},
         {id: 56, game_id: 7, player_id: 102, buyin: 20, rebuys: 0, addons: 0, position: 8, prizemoney: 0},
         {id: 57, game_id: 7, player_id: 101, buyin: 20, rebuys: 80, addons: 0, position: 6, prizemoney: 0},

@@ -10,12 +10,12 @@ router.get('/games', (req, res) => {
   .then(result => {res.json(result)})
   .catch(err => res.status(500).end)
 })
-//====================================================
+
 router.get('/games/game/:id', (req, res) => {
   let {id} = req.body
   db.getGameData(id)
   .then(result => {res.json(result)})
   .catch(err => res.status(500).end)
 })
-//====================================================
+
 module.exports = router

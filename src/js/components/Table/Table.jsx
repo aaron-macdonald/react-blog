@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Table (props) {
   const {playerTable} = props
+console.log('Table: playerTable: ', playerTable)
   return (
     <div className='table'>
       <div className='row valign-wrapper'>
@@ -22,6 +23,7 @@ function Table (props) {
         </thead>
         <tbody>
           {playerTable.map(player => {
+console.log("Table: player: ", player)
             const {knickName, played, buyin, rebuys, addons, prizeMoney, profitLoss} = player
             return <tr key={knickName}>
               <td><h5>{knickName}</h5></td>

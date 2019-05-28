@@ -6,7 +6,6 @@ import Table from './Table.jsx'
 import { getTableData } from '../../client-api'
 import { getPlayers } from '../../client-api'
 
-
 class TableRoutes extends React.Component {
   constructor (props) {
     super(props)
@@ -18,12 +17,14 @@ class TableRoutes extends React.Component {
     this.fetchTable = this.fetchTable.bind(this)
     this.fetchPlayers = this.fetchPlayers.bind(this)
   }
+
   componentWillMount() {
     this.fetchPlayers(),
     this.fetchTable(),
     this.makeTable()
 
   }
+
   fetchPlayers () {
     return getPlayers()
       .then(players => {
@@ -33,6 +34,7 @@ class TableRoutes extends React.Component {
         this.setState({ errorMessage: err.message })
       })
   }
+  
   fetchTable() {
     return getTableData()
       .then(table => {
@@ -42,24 +44,33 @@ class TableRoutes extends React.Component {
         this.setState({ errorMessage: err.message })
       })
   }
+
   makeTable() {
   }
 
   render() {
     const {table, players} = this.state
+    
+console.log('TableRoutes: players: ', players)
+
     const playerResults = players.map(player => {
       return table.filter(result => {
         return result.player_id === player.id
       })
     })
+
+console.log('TableRoutes: pleyerResults: ', playerResults)
+
     const playerTable = playerResults.map(playa => {
-      let knickName = ""
-      let playerSummary = {}
-      let played = 0
-      let buyin = 0
-      let rebuys = 0
-      let addons = 0
-      let prizeMoney = 0
+      let 
+        knickName = "",
+        playerSummary = {},
+        played = 0,
+        buyin = 0,
+        rebuys = 0,
+        addons = 0,
+        prizeMoney = 0
+      
       playa.map(game => {
         knickName = game.knickName
         played = played + 1
@@ -68,10 +79,13 @@ class TableRoutes extends React.Component {
         addons = addons + game.addons
         prizeMoney = prizeMoney + game.prizemoney
       })
+     
       let profitLoss = prizeMoney - buyin - rebuys - addons
+      
       playerSummary = {
         knickName, played, buyin, rebuys, addons, prizeMoney, profitLoss
       }
+      
       return playerSummary
     })
 
@@ -91,3 +105,5 @@ class TableRoutes extends React.Component {
   }
 }
 export default TableRoutes
+
+
