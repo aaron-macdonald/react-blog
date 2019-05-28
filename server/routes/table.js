@@ -10,6 +10,5 @@ router.get('/table', (req, res) => {
   .then(result => {res.json(result)})
   .catch(err => res.status(500).end)
 })
-//====================================================
 
 module.exports = router

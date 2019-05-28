@@ -40,6 +40,7 @@ class PlayerRoutes extends React.Component {
         this.setState({ errorMessage: err.message })
       })
   }
+  
   render () {
     return (
       <div className="player-routes">
