@@ -15,6 +15,7 @@
   "author": "Aaron Macdonald",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "superagent": "^5.0.5"
   },
   "devDependencies": {
