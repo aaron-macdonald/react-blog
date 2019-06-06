@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 function Table (props) {
   const { playerTable } = props
-console.log('playerTable: ', playerTable)
   return (
     <div className='table'>
       <div className='row valign-wrapper'>
