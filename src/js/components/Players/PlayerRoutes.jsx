@@ -22,23 +22,23 @@ class PlayerRoutes extends React.Component {
   componentWillMount () {
     this.fetchPlayers()
   }
-  fetchPlayers () {
-    return getPlayers()
-      .then(players => {
-        this.setState({ players: players })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchPlayers () {
+    try {
+      const players = await getPlayers();
+      this.setState({ players: players });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
-  fetchPlayerData (id) {
-    return getPlayerData(id)
-      .then(playerdata => {
-        this.setState({playerdata: playerdata})
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchPlayerData (id) {
+    try {
+      const playerdata = await getPlayerData(id);
+      this.setState({ playerdata: playerdata });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
   
   render () {

@@ -22,23 +22,23 @@ class GameRoutes extends React.Component {
   componentWillMount() {
     this.fetchGames()
   }
-  fetchGames() {
-    return getGames()
-      .then(games => {
-        this.setState({ games: games })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchGames() {
+    try {
+      const games = await getGames();
+      this.setState({ games: games });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
-  fetchGameData(id) {
-    return getGameData(id)
-      .then(gamedata => {
-        this.setState({ gamedata: gamedata })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchGameData(id) {
+    try {
+      const gamedata = await getGameData(id);
+      this.setState({ gamedata: gamedata });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
   render() {
     return (
