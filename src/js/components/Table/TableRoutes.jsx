@@ -1,8 +1,6 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-
 import Table from './Table.jsx'
-
 import { getTableData } from '../../client-api'
 import { getPlayers } from '../../client-api'
 
@@ -12,20 +10,19 @@ class TableRoutes extends React.Component {
     this.state = {
       players: [],
       table: [],
+      loaded: false,
       errorMessage: ''
     }
-    this.fetchTable = this.fetchTable.bind(this)
-    this.fetchPlayers = this.fetchPlayers.bind(this)
+    this.fetchTableData = this.fetchTableData.bind(this)
+    this.fetchPlayersData = this.fetchPlayersData.bind(this)
+  }
+  async componentWillMount() {
+    await this.fetchPlayersData()
+    await this.fetchTableData()
+    this.setState({ loaded: true }) 
   }
 
-  componentWillMount() {
-    this.fetchPlayers(),
-    this.fetchTable(),
-    this.makeTable()
-
-  }
-
-  fetchPlayers () {
+  fetchPlayersData () {
     return getPlayers()
       .then(players => {
         this.setState({ players: players })
@@ -34,8 +31,7 @@ class TableRoutes extends React.Component {
         this.setState({ errorMessage: err.message })
       })
   }
-  
-  fetchTable() {
+  fetchTableData() {
     return getTableData()
       .then(table => {
         this.setState({ table: table })
@@ -45,22 +41,15 @@ class TableRoutes extends React.Component {
       })
   }
 
-  makeTable() {
-  }
-
   render() {
     const {table, players} = this.state
     
-console.log('TableRoutes: players: ', players)
-
     const playerResults = players.map(player => {
       return table.filter(result => {
         return result.player_id === player.id
       })
     })
-
-console.log('TableRoutes: pleyerResults: ', playerResults)
-
+    
     const playerTable = playerResults.map(playa => {
       let 
         knickName = "",
@@ -89,19 +78,26 @@ console.log('TableRoutes: pleyerResults: ', playerResults)
       return playerSummary
     })
 
+    if(!this.state.loaded) {
+      return <div>Error</div>
+    }else{
+      return (
+        <div className="table-routes">
+          <Switch>
+            <Route 
+              path='/table'
+              exact
+              render={ props =>
+                <Table playerTable={playerTable}
+              />
+            }/>
+          </Switch>
+          {this.state.errorMessage &&
+            <h1>{this.state.errorMessage}</h1>}
+        </div>
+      )
+    }
 
-    return (
-      <div className="table-routes">
-        <Switch>
-          <Route exact path='/table' render={ props =>
-            <Table playerTable={playerTable}
-            />
-          }/>
-        </Switch>
-        {this.state.errorMessage &&
-          <h1>{this.state.errorMessage}</h1>}
-      </div>
-    )
   }
 }
 export default TableRoutes

@@ -45,7 +45,7 @@ module.exports = {
 ````
 ### Writing React components
 - npm i react react-dom
--  mkdir -p src/js/components/{container,presentational}
+- mkdir -p src/js/components/{container,presentational}
 - touch src/js/components/container/FormContainer.jsx
 
 **FormContainer.jsx**
