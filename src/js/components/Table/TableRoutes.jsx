@@ -13,43 +13,48 @@ class TableRoutes extends React.Component {
       loaded: false,
       errorMessage: ''
     }
-    this.fetchTableData = this.fetchTableData.bind(this)
-    this.fetchPlayersData = this.fetchPlayersData.bind(this)
-  }
-  async componentWillMount() {
-    await this.fetchPlayersData()
-    await this.fetchTableData()
-    this.setState({ loaded: true }) 
+    // this.fetchTableData = this.fetchTableData.bind(this)
+    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
   }
 
-  fetchPlayersData () {
-    return getPlayers()
-      .then(players => {
-        this.setState({ players: players })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async componentDidMount() {
+    try {
+      await this.fetchPlayers()
+      await this.fetchTable()
+      this.setState({loaded: true})
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
-  fetchTableData() {
-    return getTableData()
-      .then(table => {
-        this.setState({ table: table })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+
+  async fetchPlayers () {
+    try {
+      const players = await getPlayers();
+      this.setState({ players: players });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
+  }
+  
+  async fetchTable() {
+    try {
+      const table = await getTableData();
+      this.setState({ table: table });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
 
   render() {
     const {table, players} = this.state
-    
     const playerResults = players.map(player => {
       return table.filter(result => {
         return result.player_id === player.id
       })
     })
-    
     const playerTable = playerResults.map(playa => {
       let 
         knickName = "",

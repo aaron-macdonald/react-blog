@@ -16,29 +16,35 @@ class PlayerRoutes extends React.Component {
       playerdata: [],
       errorMessage: ''
     }
-    this.fetchPlayersData = this.fetchPlayersData.bind(this)
-    this.fetchPlayerData = this.fetchPlayerData.bind(this)
+    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
+    // this.fetchPlayerData = this.fetchPlayerData.bind(this)
   }
-  componentWillMount () {
-    this.fetchPlayersData()
+  async componentDidMount () {
+    try {
+      await this.fetchPlayers()
+      await this.fetchPlayerData()
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
-  fetchPlayersData () {
-    return getPlayers()
-      .then(players => {
-        this.setState({ players: players })
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchPlayers () {
+    try {
+      const players = await getPlayers();
+      this.setState({ players: players });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
-  fetchPlayerData (id) {
-    return getPlayerData(id)
-      .then(playerdata => {
-        this.setState({playerdata: playerdata})
-      })
-      .catch(err => {
-        this.setState({ errorMessage: err.message })
-      })
+  async fetchPlayerData (id) {
+    try {
+      const playerdata = await getPlayerData(id);
+      this.setState({ playerdata: playerdata });
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
   
   render () {
