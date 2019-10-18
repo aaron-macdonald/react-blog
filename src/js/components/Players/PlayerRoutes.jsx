@@ -16,11 +16,17 @@ class PlayerRoutes extends React.Component {
       playerdata: [],
       errorMessage: ''
     }
-    this.fetchPlayers = this.fetchPlayers.bind(this)
-    this.fetchPlayerData = this.fetchPlayerData.bind(this)
+    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
+    // this.fetchPlayerData = this.fetchPlayerData.bind(this)
   }
-  componentWillMount () {
-    this.fetchPlayers()
+  async componentDidMount () {
+    try {
+      await this.fetchPlayers()
+      await this.fetchPlayerData()
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
   async fetchPlayers () {
     try {
@@ -48,7 +54,7 @@ class PlayerRoutes extends React.Component {
           <Route exact path='/players' render={ (props) =>
              <Players
                players={this.state.players}
-               fetchPlayers={this.fetchPlayers}
+               fetchPlayersData={this.fetchPlayersData}
                {...props}
              />
           }/>

@@ -1,8 +1,6 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-
 import Table from './Table.jsx'
-
 import { getTableData } from '../../client-api'
 import { getPlayers } from '../../client-api'
 
@@ -15,14 +13,19 @@ class TableRoutes extends React.Component {
       loaded: false,
       errorMessage: ''
     }
-    this.fetchTable = this.fetchTable.bind(this)
-    this.fetchPlayers = this.fetchPlayers.bind(this)
+    // this.fetchTableData = this.fetchTableData.bind(this)
+    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
   }
 
   async componentDidMount() {
-    await this.fetchPlayers()
-    await this.fetchTable()
-    this.setState({loaded: true})
+    try {
+      await this.fetchPlayers()
+      await this.fetchTable()
+      this.setState({loaded: true})
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
 
   async fetchPlayers () {
@@ -47,13 +50,11 @@ class TableRoutes extends React.Component {
 
   render() {
     const {table, players} = this.state
-
     const playerResults = players.map(player => {
       return table.filter(result => {
         return result.player_id === player.id
       })
     })
-
     const playerTable = playerResults.map(playa => {
       let 
         knickName = "",
@@ -82,20 +83,26 @@ class TableRoutes extends React.Component {
       return playerSummary
     })
 
-    return (
+    if(!this.state.loaded) {
+      return <div>Error</div>
+    }else{
+      return (
         <div className="table-routes">
-          {this.state.loaded ? 
-            <Switch>
-              <Route exact path='/table' render={ props =>
+          <Switch>
+            <Route 
+              path='/table'
+              exact
+              render={ props =>
                 <Table playerTable={playerTable}
-                />
-              }/>
-            </Switch>
-          : null}
+              />
+            }/>
+          </Switch>
           {this.state.errorMessage &&
             <h1>{this.state.errorMessage}</h1>}
         </div>
-    )
+      )
+    }
+
   }
 }
 export default TableRoutes

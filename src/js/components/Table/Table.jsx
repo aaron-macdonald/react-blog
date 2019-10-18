@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 function Table (props) {
-  const { playerTable } = props
+  const {playerTable} = props
+
   return (
     <div className='table'>
       <div className='row valign-wrapper'>
