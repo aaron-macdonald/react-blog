@@ -16,8 +16,6 @@ class PlayerRoutes extends React.Component {
       playerdata: [],
       errorMessage: ''
     }
-    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
-    // this.fetchPlayerData = this.fetchPlayerData.bind(this)
   }
   async componentDidMount () {
     try {

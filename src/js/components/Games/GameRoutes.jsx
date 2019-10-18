@@ -6,8 +6,6 @@ import Game from './Game.jsx'
 import { getGames } from '../../client-api'
 import { getGameData } from '../../client-api'
 
-
-
 class GameRoutes extends React.Component {
   constructor (props) {
     super(props)
@@ -16,8 +14,6 @@ class GameRoutes extends React.Component {
       gamedata: [],
       errorMessage: ''
     }
-    this.fetchGames = this.fetchGames.bind(this)
-    this.fetchGameData = this.fetchGameData.bind(this)
   }
   componentWillMount() {
     this.fetchGames()

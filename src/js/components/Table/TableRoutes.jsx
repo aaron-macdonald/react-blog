@@ -13,8 +13,6 @@ class TableRoutes extends React.Component {
       loaded: false,
       errorMessage: ''
     }
-    // this.fetchTableData = this.fetchTableData.bind(this)
-    // this.fetchPlayersData = this.fetchPlayersData.bind(this)
   }
 
   async componentDidMount() {
