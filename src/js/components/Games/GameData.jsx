@@ -5,6 +5,7 @@ class GameData extends React.Component {
   componentDidMount() {
     this.props.fetchGameData(this.props.id)
   }
+  
   render () {
     return (
       <div className="card">
@@ -42,4 +43,5 @@ class GameData extends React.Component {
     )
   }
 }
+
 export default GameData

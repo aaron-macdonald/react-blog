@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import GameData from './GameData.jsx'
 
 class Game extends React.Component {
@@ -45,4 +44,5 @@ class Game extends React.Component {
     )
   }
 }
+
 export default Game

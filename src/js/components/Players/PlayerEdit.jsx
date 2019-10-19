@@ -2,7 +2,6 @@ import React from 'react'
 import { updatePlayer } from '../../client-api'
 
 class PlayerEdit extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -17,18 +16,21 @@ class PlayerEdit extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentWillMount () {
+
+  componentDidMount () {
     const {player} = this.props
     if (player) {
       this.setState(Object.assign({}, player)
     )}
   }
+
   componentWillReceiveProps (nextProps) {
     const {player} = nextProps
     if (player && !this.props.player) {
       this.setState(Object.assign({}, player))
     }
   }
+
   handleSubmit (e) {
     e.preventDefault()
     this.setState({ errorMessage: null })
@@ -39,6 +41,7 @@ class PlayerEdit extends React.Component {
           })
         .catch(err => this.setState({ errorMessage: err.message }))
   }
+  
   render () {
     return (
       <form className='editPlayer' onSubmit={this.handleSubmit}>

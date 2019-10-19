@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import PlayerData from './PlayerData.jsx'
 
 class Player extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPlayerData()
   }
+  
   render() {
     const {id, firstName, surName, knickName, favHand, favHeadsUp, leastFavHeadsUp, 
       image} = this.props.player
@@ -65,4 +66,5 @@ class Player extends React.Component {
     )
   }
 }
+
 export default Player

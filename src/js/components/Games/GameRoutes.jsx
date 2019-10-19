@@ -17,13 +17,8 @@ class GameRoutes extends React.Component {
     this.fetchGameData = this.fetchGameData.bind(this)
   }
 
-  async componentDidMount() {
-    try {
-      await this.fetchGames()
-    }
-    catch (err) {
-      this.setState({ errorMessage: err.message });
-    }
+  componentDidMount() {
+    this.fetchGames()
   }
 
   async fetchGames() {
@@ -32,6 +27,7 @@ class GameRoutes extends React.Component {
       this.setState({ games: games });
     }
     catch (err) {
+      console.log('fetchGames error: ', err.message)
       this.setState({ errorMessage: err.message });
     }
   }
@@ -74,4 +70,5 @@ class GameRoutes extends React.Component {
     )
   }
 }
+
 export default GameRoutes

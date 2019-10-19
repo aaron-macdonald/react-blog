@@ -42,7 +42,9 @@ function Players (props) {
     </div>
   )
 }
+
 Players.defaultProps = {
   players: []
 }
+
 export default Players
