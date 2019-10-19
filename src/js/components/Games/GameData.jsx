@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class GameData extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchGameData(this.props.id)
   }
   render () {

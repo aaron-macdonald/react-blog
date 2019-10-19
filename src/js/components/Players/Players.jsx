@@ -24,7 +24,7 @@ function Players (props) {
         </thead>
         <tbody>
           {players.map(player => {
-            const {id, firstName, surName, knickName, favHand, favHeadsUp, leastFavHeadsUp, image} = player
+            const {id, firstName, surName, image} = player
             return <tr key={id} className='player'>
               <td><h5>{firstName} {surName}</h5></td>
               <td><img src={image} alt="" height="100" width="100"></img></td>

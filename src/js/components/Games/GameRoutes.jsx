@@ -14,10 +14,18 @@ class GameRoutes extends React.Component {
       gamedata: [],
       errorMessage: ''
     }
+    this.fetchGameData = this.fetchGameData.bind(this)
   }
-  componentWillMount() {
-    this.fetchGames()
+
+  async componentDidMount() {
+    try {
+      await this.fetchGames()
+    }
+    catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   }
+
   async fetchGames() {
     try {
       const games = await getGames();
@@ -27,15 +35,18 @@ class GameRoutes extends React.Component {
       this.setState({ errorMessage: err.message });
     }
   }
+  
   async fetchGameData(id) {
     try {
       const gamedata = await getGameData(id);
       this.setState({ gamedata: gamedata });
     }
     catch (err) {
+      console.log('fetchGameData error: ', err.message)
       this.setState({ errorMessage: err.message });
     }
   }
+
   render() {
     return (
       <div className="game-routes">
@@ -43,7 +54,7 @@ class GameRoutes extends React.Component {
           <Route exact path='/games' render={ props =>
             <Games
               games={this.state.games}
-                {...props}
+              {...props}
             />
           }/>
           <Route exact path='/games/game/:id' render={ props =>
@@ -53,7 +64,7 @@ class GameRoutes extends React.Component {
               fetchGameData={this.fetchGameData}
               gamedata={this.state.gamedata.filter(gdata =>
                 gdata.game_id === Number(props.match.params.id))}
-                {...props}
+              {...props}
             />
           }/>
         </Switch>

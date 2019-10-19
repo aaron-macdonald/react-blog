@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class PlayerData extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPlayerData(this.props.id)
   }
   render () {

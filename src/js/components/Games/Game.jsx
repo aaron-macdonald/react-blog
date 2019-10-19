@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import GameData from './GameData.jsx'
 
 class Game extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchGameData()
   }
   render() {

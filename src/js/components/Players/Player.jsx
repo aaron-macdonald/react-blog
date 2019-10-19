@@ -7,7 +7,8 @@ class Player extends React.Component {
     this.props.fetchPlayerData()
   }
   render() {
-    const {id, firstName, surName, knickName, favHand, favHeadsUp, leastFavHeadsUp, image} = this.props.player
+    const {id, firstName, surName, knickName, favHand, favHeadsUp, leastFavHeadsUp, 
+      image} = this.props.player
     return (
       <div className="row">
         <div className="col s12 m10 offset-m1">
@@ -47,14 +48,17 @@ class Player extends React.Component {
               <div className="card-action">
                 <Link to={`/players/player/${id}/edit/`}>
                   <div className="center">
-                    <div className="waves-effect waves-light btn">Edit Player Details</div>
+                    <div className="waves-effect waves-light btn">
+                      Edit Player Details
+                    </div>
                   </div>
                 </Link>
               </div>
             </div>
           </div>
           <div>
-            <PlayerData id={id} fetchPlayerData={this.props.fetchPlayerData} playerdata={this.props.playerdata}/>
+            <PlayerData id={id} fetchPlayerData={this.props.fetchPlayerData} 
+              playerdata={this.props.playerdata}/>
           </div>
         </div>
       </div>
