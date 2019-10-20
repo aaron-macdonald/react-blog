@@ -49,11 +49,12 @@ class TableRoutes extends React.Component {
   render() {
     const {table, players} = this.state
     const playerResults = players.map(player => {
+// console.log('player: ', player)
       return table.filter(result => {
         return result.player_id === player.id
       })
     })
-    const playerTable = playerResults.map(playa => {
+    const playerTable = playerResults.map(individualGameResults => {
       let 
         knickName = "",
         playerSummary = {},
@@ -63,7 +64,7 @@ class TableRoutes extends React.Component {
         addons = 0,
         prizeMoney = 0
       
-      playa.map(game => {
+      individualGameResults.map(game => {
         knickName = game.knickName
         played = played + 1
         buyin = buyin + game.buyin
@@ -71,13 +72,12 @@ class TableRoutes extends React.Component {
         addons = addons + game.addons
         prizeMoney = prizeMoney + game.prizemoney
       })
-     
+      
       let profitLoss = prizeMoney - buyin - rebuys - addons
       
       playerSummary = {
         knickName, played, buyin, rebuys, addons, prizeMoney, profitLoss
       }
-      
       return playerSummary
     })
 
@@ -90,7 +90,7 @@ class TableRoutes extends React.Component {
             <Route 
               path='/table'
               exact
-              render={ props =>
+              render={ () =>
                 <Table playerTable={playerTable}
               />
             }/>
