@@ -2,7 +2,6 @@ import React from 'react'
 
 function Table (props) {
   const {playerTable} = props
-
   return (
     <div className='table'>
       <div className='row valign-wrapper'>
@@ -23,19 +22,22 @@ function Table (props) {
         <tbody>
           {playerTable.map(player => {
             const {knickName, played, buyin, rebuys, addons, prizeMoney, profitLoss} = player
-            return <tr key={knickName}>
-              <td><h5>{knickName}</h5></td>
-              <td><h5>{played}</h5></td>
-              <td><h5>{buyin}</h5></td>
-              <td><h5>{rebuys}</h5></td>
-              <td><h5>{addons}</h5></td>
-              <td><h5>{prizeMoney}</h5></td>
-              <td><h5>{profitLoss}</h5></td>
-            </tr>
+            if(played > 0 ){
+              return <tr key={knickName}>
+                <td><h5>{knickName}</h5></td>
+                <td><h5>{played}</h5></td>
+                <td><h5>{buyin}</h5></td>
+                <td><h5>{rebuys}</h5></td>
+                <td><h5>{addons}</h5></td>
+                <td><h5>{prizeMoney}</h5></td>
+                <td><h5>{profitLoss}</h5></td>
+              </tr>
+            }
           })}
         </tbody>
       </table>
     </div>
   )
 }
+
 export default Table
