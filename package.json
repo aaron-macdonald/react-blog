@@ -1,11 +1,11 @@
 {
-  "name": "webpack-babel-react-v2",
+  "name": "react-blog-frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/aaron-macdonald/Ziggy-Poker-Frontend.git"
+    "url": "git://github.com/aaron-macdonald/React-Blog-Frontend.git"
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",

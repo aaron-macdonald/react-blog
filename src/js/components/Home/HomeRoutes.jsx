@@ -1,20 +1,20 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Resume from './Resume.jsx'
-import { getResume } from '../../client-api'
+import Home from './Home.jsx'
+import { getHome } from '../../client-api'
 
-class ResumeRoutes extends React.Component {
+class HomeRoutes extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      resume: [],
+      home: [],
     }
   }
 
   async componentDidMount() {
     try {
-      await this.fetchResume()
+      await this.fetchHome()
       this.setState({loaded: true})
     }
     catch (err) {
@@ -22,10 +22,10 @@ class ResumeRoutes extends React.Component {
     }
   }
 
-  async fetchResume () {
+  async fetchHome () {
     try {
-      const resume = await getResume();
-      this.setState({ resume: resume });
+      const home = await getHome();
+      this.setState({ home: home });
     }
     catch (err) {
       this.setState({ errorMessage: err.message });
@@ -34,13 +34,13 @@ class ResumeRoutes extends React.Component {
 
   render () {
     return (
-      <div className="resume-routes">
+      <div className="home-routes">
         <Switch>
-          <Route exact path='/resume' render={ (props) =>
-             <Resume
-               resume={this.state.resume}
-               {...props}
-             />
+          <Route exact path='/' render={ (props) =>
+            <Home
+              home={this.state.home}
+              {...props}
+            />
           }/>
         </Switch>
         {this.state.errorMessage &&
@@ -50,4 +50,4 @@ class ResumeRoutes extends React.Component {
   }
 }
 
-export default ResumeRoutes
+export default HomeRoutes

@@ -1,11 +1,12 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Home from './Home.jsx'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
-import BlogRoutes from './Blog/BlogRoutes.jsx'
+import HomeRoutes from './Home/HomeRoutes.jsx'
+import AboutMeRoutes from './AboutMe/AboutMeRoutes.jsx'
 import ResumeRoutes from './Resume/ResumeRoutes.jsx'
+import DevAcademyRoutes from './DevAcademy/DevAcademyRoutes.jsx'
 
 function Layout() {
   return (
@@ -17,18 +18,20 @@ function Layout() {
         <div className="">
           <Switch>
             <Route
-              exact
-              path='/'
-              render={() =>
-                <Home />}
+              exact path='/'
+              component={HomeRoutes}
             />
             <Route
-              path='/blog'
-              component={BlogRoutes}
+              path='/aboutme'
+              component={AboutMeRoutes}
             />
             <Route
               path='/resume'
               component={ResumeRoutes}
+            />
+            <Route
+              path='/devacademy'
+              component={DevAcademyRoutes}
             />
           </Switch>
         </div>

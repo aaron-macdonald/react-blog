@@ -1,20 +1,20 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Resume from './Resume.jsx'
-import { getResume } from '../../client-api'
+import AboutMe from './AboutMe.jsx'
+import { getAboutMe } from '../../client-api'
 
-class ResumeRoutes extends React.Component {
+class AboutMeRoutes extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      resume: [],
+      aboutMe: [],
     }
   }
 
   async componentDidMount() {
     try {
-      await this.fetchResume()
+      await this.fetchAboutMe()
       this.setState({loaded: true})
     }
     catch (err) {
@@ -22,10 +22,10 @@ class ResumeRoutes extends React.Component {
     }
   }
 
-  async fetchResume () {
+  async fetchAboutMe () {
     try {
-      const resume = await getResume();
-      this.setState({ resume: resume });
+      const aboutMe = await getAboutMe();
+      this.setState({ aboutMe: aboutMe });
     }
     catch (err) {
       this.setState({ errorMessage: err.message });
@@ -34,11 +34,11 @@ class ResumeRoutes extends React.Component {
 
   render () {
     return (
-      <div className="resume-routes">
+      <div className="aboutme-routes">
         <Switch>
-          <Route exact path='/resume' render={ (props) =>
-             <Resume
-               resume={this.state.resume}
+          <Route exact path='/aboutme' render={ (props) =>
+             <AboutMe
+               aboutMe={this.state.aboutMe}
                {...props}
              />
           }/>
@@ -50,4 +50,4 @@ class ResumeRoutes extends React.Component {
   }
 }
 
-export default ResumeRoutes
+export default AboutMeRoutes

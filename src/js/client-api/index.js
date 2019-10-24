@@ -3,79 +3,45 @@ import request from 'superagent'
 // To get around cors for now
 const localhost = 'http://localhost:5000' 
 
-export async function getPlayers () {
+export async function getHome () {
   try {
-    const result = await request.get(localhost + '/api/v1/players/players');
-      const players = result.body;
-      return players;
+    const result = await request.get(localhost + '/api/v1/home/home');
+      const home = result.body;
+      return home;
   }
   catch (err) {
-    throw Error('Cannot get players!');
+    throw Error('Cannot get aboutme!');
   }
 }
 
-export async function addPlayer (player) {
+export async function getAboutMe () {
   try {
-    const result = await request.post(localhost + '/api/v1/players/player/add')
-      .send(player);
-    return result.body;
+    const result = await request.get(localhost + '/api/v1/aboutme/aboutme');
+      const aboutme = result.body;
+      return aboutme;
   }
   catch (err) {
-    throw Error('Cannot add a player!');
+    throw Error('Cannot get aboutme!');
   }
 }
 
-export async function updatePlayer (player) {
-  const{id} = player
+export async function getResume () {
   try {
-    const result = await request.put(localhost + `/api/v1/players/player/${id}/edit`)
-      .send(player);
-    return result.body;
+    const result = await request.get(localhost + '/api/v1/resume/resume');
+      const resume = result.body;
+      return resume;
   }
   catch (err) {
-    throw Error('Cannot update player!');
+    throw Error('Cannot get resume!');
   }
 }
-
-export async function getPlayerData(id) {
+export async function getDevAcademy () {
   try {
-    const result = await request.get(localhost + `/api/v1/players/players/player/${id}`)
-      .send(id);
-    return JSON.parse(result.text);
+    const result = await request.get(localhost + '/api/v1/devacademy/devacademy');
+      const devacademy = result.body;
+      return devacademy;
   }
   catch (err) {
-    throw Error('Cannot get player data');
-  }
-}
-
-export async function getGames() {
-  try {
-    const result = await request.get(localhost + '/api/v1/games/games');
-    const games = result.body;
-    return games;
-  }
-  catch (err) {
-    throw Error('Cannot get games!');
-  }
-}
-
-export async function getGameData(id) {
-  try {
-    const result = await request.get(localhost + `/api/v1/games/games/game/${id}`)
-      .send(id);
-    return JSON.parse(result.text);
-  }
-  catch (err) {
-    throw Error('Cannot get gamedata!');
-  }
-}
-
-export async function getTableData(id) {
-  try {
-    const result = await request.get(localhost + `/api/v1/table/table`);
-    return JSON.parse(result.text);
-  }
-  catch (err) {
-    throw Error('Cannot get table data!');
+    throw Error('Cannot get devacademy!');
   }
 }

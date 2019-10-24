@@ -1,15 +1,18 @@
 import React from 'react'
 
+import ResumeSection from './ResumeSection.jsx'
+
 function Resume (props) {
-  const resume = props.resume
+  const {resume} = props
   
   return (
-    <div className='container'>
-      <div className='row'>
-        <h1 className="col s12">Resume</h1>
-        <h4 className="col s12">First Resume</h4>
-      </div>
-    </div>
+    resume.map(resumeSection => {
+      return (
+        <div className="container" key={resumeSection.id}>
+          <ResumeSection resumeSection={resumeSection} />
+        </div>
+      )
+    })
   )
 }
 

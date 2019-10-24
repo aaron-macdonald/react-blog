@@ -1,20 +1,19 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Resume from './Resume.jsx'
-import { getResume } from '../../client-api'
+import DevAcademy from './DevAcademy.jsx'
+import { getDevAcademy } from '../../client-api'
 
-class ResumeRoutes extends React.Component {
+class DevAcademyRoutes extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      resume: [],
+      devAcademy: [],
     }
   }
-
   async componentDidMount() {
     try {
-      await this.fetchResume()
+      await this.fetchDevAcademy()
       this.setState({loaded: true})
     }
     catch (err) {
@@ -22,25 +21,26 @@ class ResumeRoutes extends React.Component {
     }
   }
 
-  async fetchResume () {
+  async fetchDevAcademy () {
     try {
-      const resume = await getResume();
-      this.setState({ resume: resume });
+      const devAcademy = await getDevAcademy();
+      this.setState({ devAcademy: devAcademy });
     }
     catch (err) {
       this.setState({ errorMessage: err.message });
     }
   }
 
+
   render () {
     return (
-      <div className="resume-routes">
+      <div className="devacademy-routes">
         <Switch>
-          <Route exact path='/resume' render={ (props) =>
-             <Resume
-               resume={this.state.resume}
-               {...props}
-             />
+          <Route exact path='/devacademy' render={ (props) =>
+            <DevAcademy
+              devAcademy={this.state.devAcademy}
+              {...props}
+            />
           }/>
         </Switch>
         {this.state.errorMessage &&
@@ -50,4 +50,4 @@ class ResumeRoutes extends React.Component {
   }
 }
 
-export default ResumeRoutes
+export default DevAcademyRoutes
