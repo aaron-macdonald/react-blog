@@ -8,7 +8,7 @@ function Resume (props) {
   return (
     resume.map(resumeSection => {
       return (
-        <div className="container" key={resumeSection.id}>
+        <div key={resumeSection.id}>
           <ResumeSection resumeSection={resumeSection} />
         </div>
       )

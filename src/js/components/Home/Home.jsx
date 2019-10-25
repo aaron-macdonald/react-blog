@@ -8,7 +8,7 @@ function Home (props) {
   return (
     home.map(homeSection => {
       return (
-        <div className="container" key={homeSection.id}>
+        <div key={homeSection.id}>
           <HomeSection homeSection={homeSection} />
         </div>
       )

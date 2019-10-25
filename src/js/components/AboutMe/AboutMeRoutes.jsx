@@ -2,6 +2,7 @@ import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
 import AboutMe from './AboutMe.jsx'
+import NavBar from '../Shared/NavBar.jsx'
 import { getAboutMe } from '../../client-api'
 
 class AboutMeRoutes extends React.Component {
@@ -34,17 +35,24 @@ class AboutMeRoutes extends React.Component {
 
   render () {
     return (
-      <div className="aboutme-routes">
-        <Switch>
-          <Route exact path='/aboutme' render={ (props) =>
-             <AboutMe
-               aboutMe={this.state.aboutMe}
-               {...props}
-             />
-          }/>
-        </Switch>
-        {this.state.errorMessage &&
-          <h1>{this.state.errorMessage}</h1>}
+      <div className="row">  
+        <div className="col s12 m3 l2">
+          <NavBar 
+            navItems={this.state.aboutMe}
+          />
+        </div>
+        <div className="col s12 m9 l10">
+          <Switch>
+            <Route exact path='/aboutme' render={ (props) =>
+              <AboutMe
+                aboutMe={this.state.aboutMe}
+                {...props}
+              />
+            }/>
+          </Switch>
+          {this.state.errorMessage &&
+            <h1>{this.state.errorMessage}</h1>}
+        </div>
       </div>
     )
   }

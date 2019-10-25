@@ -8,7 +8,7 @@ function DevAcademy (props) {
   return (
     devAcademy.map(devAcademySection => {
       return (
-        <div className="container" key={devAcademySection.id}>
+        <div key={devAcademySection.id}>
           <DevAcademySection devAcademySection={devAcademySection} />
         </div>
       )

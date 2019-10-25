@@ -2,6 +2,7 @@ import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
 import Resume from './Resume.jsx'
+import NavBar from '../Shared/NavBar.jsx'
 import { getResume } from '../../client-api'
 
 class ResumeRoutes extends React.Component {
@@ -34,17 +35,24 @@ class ResumeRoutes extends React.Component {
 
   render () {
     return (
-      <div className="resume-routes">
-        <Switch>
-          <Route exact path='/resume' render={ (props) =>
-             <Resume
-               resume={this.state.resume}
-               {...props}
-             />
-          }/>
-        </Switch>
-        {this.state.errorMessage &&
-          <h1>{this.state.errorMessage}</h1>}
+      <div className="row">  
+        <div className="col s12 m3 l2">
+        <NavBar 
+            navItems={this.state.resume}
+          />
+        </div>     
+        <div className="col s12 m9 l10">
+          <Switch>
+            <Route exact path='/resume' render={ (props) =>
+              <Resume
+                resume={this.state.resume}
+                {...props}
+              />
+            }/>
+          </Switch>
+          {this.state.errorMessage &&
+            <h1>{this.state.errorMessage}</h1>}
+        </div>
       </div>
     )
   }

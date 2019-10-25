@@ -8,7 +8,7 @@ function AboutMe (props) {
   return (
     aboutMe.map(aboutMeSection => {
       return (
-        <div className="container" key={aboutMeSection.id}>
+        <div key={aboutMeSection.id}>
           <AboutMeSection aboutMeSection={aboutMeSection} />
         </div>
       )
