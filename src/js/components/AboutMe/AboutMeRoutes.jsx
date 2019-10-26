@@ -43,12 +43,18 @@ class AboutMeRoutes extends React.Component {
         </div>
         <div className="col s12 m9 l10">
           <Switch>
-            <Route exact path='/aboutme' render={ (props) =>
-              <AboutMe
-                aboutMe={this.state.aboutMe}
-                {...props}
-              />
-            }/>
+            {this.state.aboutMe.map(section => {
+              const sectionPath = `/aboutme/${section.url}`
+              return (
+                <Route key={section.id} exact path={sectionPath} render={ (props) =>
+                  <AboutMe
+                    section={section}
+                    {...props}
+                  />
+                }/>
+              )
+            })}
+            
           </Switch>
           {this.state.errorMessage &&
             <h1>{this.state.errorMessage}</h1>}

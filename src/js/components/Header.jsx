@@ -10,9 +10,9 @@ function Header () {
             <Link to="/" className="brand-logo">Aaron Macdonald</Link>
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><Link to="/aboutme">About Me</Link></li>
-            <li><Link to="/resume">Resume</Link></li>
-            <li><Link to="/devacademy">Dev Academy</Link></li>
+            <li><Link to="/aboutme/personal">About Me</Link></li>
+            <li><Link to="/resume/profile">Resume</Link></li>
+            <li><Link to="/devacademy/devacademy">Dev Academy</Link></li>
           </ul>
         </div>
       </nav>

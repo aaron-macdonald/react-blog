@@ -43,12 +43,18 @@ class DevAcademyRoutes extends React.Component {
         </div>
         <div className="col s12 m9 l10">
           <Switch>
-            <Route exact path='/devacademy' render={ (props) =>
-              <DevAcademy
-                devAcademy={this.state.devAcademy}
-                {...props}
-              />
-            }/>
+            {this.state.devAcademy.map(section => {
+              const sectionPath = `/devAcademy/${section.url}`
+              return (
+                <Route key={section.id} exact path={sectionPath} render={ (props) =>
+                  <DevAcademy
+                    section={section}
+                    {...props}
+                  />
+                }/>
+              )
+            })}
+            
           </Switch>
           {this.state.errorMessage &&
             <h1>{this.state.errorMessage}</h1>}
@@ -57,5 +63,4 @@ class DevAcademyRoutes extends React.Component {
     )
   }
 }
-
 export default DevAcademyRoutes

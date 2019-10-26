@@ -35,24 +35,17 @@ class HomeRoutes extends React.Component {
 
   render () {
     return (
-      <div className="row">  
-        <div className="col s12 m3 l2">
-          <NavBar 
-            navItems={this.state.home}
-          />
-        </div>
-        <div className="col s12 m9 l10">
-          <Switch>
-            <Route exact path='/' render={ (props) =>
-              <Home
-                home={this.state.home}
-                {...props}
-              />
-            }/>
-          </Switch>
-          {this.state.errorMessage &&
-            <h1>{this.state.errorMessage}</h1>}
-        </div>
+      <div className="container">     
+        <Switch>
+          <Route exact path='/' render={ (props) =>
+            <Home
+              home={this.state.home}
+              {...props}
+            />
+          }/>
+        </Switch>
+        {this.state.errorMessage &&
+          <h1>{this.state.errorMessage}</h1>}
       </div>
     )
   }

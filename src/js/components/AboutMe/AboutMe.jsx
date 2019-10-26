@@ -1,18 +1,15 @@
 import React from 'react'
 
-import AboutMeSection from './AboutMeSection.jsx'
-
 function AboutMe (props) {
-  const {aboutMe} = props
-  
+  const {section} = props
   return (
-    aboutMe.map(aboutMeSection => {
-      return (
-        <div key={aboutMeSection.id}>
-          <AboutMeSection aboutMeSection={aboutMeSection} />
-        </div>
-      )
-    })
+    <div className="">
+      <div className='row'>
+        <h1 className="col s12">{ section.heading }</h1>
+        <h4 className="col s12">{ section.intro }</h4>
+        <p className="col s12">{ section.content }</p>
+      </div>
+    </div>
   )
 }
 

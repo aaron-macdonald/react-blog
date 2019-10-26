@@ -37,18 +37,24 @@ class ResumeRoutes extends React.Component {
     return (
       <div className="row">  
         <div className="col s12 m3 l2">
-        <NavBar 
+          <NavBar 
             navItems={this.state.resume}
           />
-        </div>     
+        </div>
         <div className="col s12 m9 l10">
           <Switch>
-            <Route exact path='/resume' render={ (props) =>
-              <Resume
-                resume={this.state.resume}
-                {...props}
-              />
-            }/>
+            {this.state.resume.map(section => {
+              const sectionPath = `/resume/${section.url}`
+              return (
+                <Route key={section.id} exact path={sectionPath} render={ (props) =>
+                  <Resume
+                    section={section}
+                    {...props}
+                  />
+                }/>
+              )
+            })}
+            
           </Switch>
           {this.state.errorMessage &&
             <h1>{this.state.errorMessage}</h1>}

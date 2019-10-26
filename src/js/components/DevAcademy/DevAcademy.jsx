@@ -3,16 +3,15 @@ import React from 'react'
 import DevAcademySection from './DevAcademySection.jsx'
 
 function DevAcademy (props) {
-  const {devAcademy} = props
-  
+  const {section} = props
   return (
-    devAcademy.map(devAcademySection => {
-      return (
-        <div key={devAcademySection.id}>
-          <DevAcademySection devAcademySection={devAcademySection} />
-        </div>
-      )
-    })
+    <div className="">
+      <div className='row'>
+        <h1 className="col s12">{ section.heading }</h1>
+        <h4 className="col s12">{ section.intro }</h4>
+        <p className="col s12">{ section.content }</p>
+      </div>
+    </div>
   )
 }
 
